@@ -41,6 +41,7 @@ class MyWindow(QDialog):
         self.func.main()
         self.show_test()
 
+
     def show_test(self) -> None:
         """渲染题目"""
         self.ui.word_1.setText(self.func.answer_word[0])
@@ -59,8 +60,11 @@ class MyWindow(QDialog):
                 self.ui.label.setText(f'数据库中无"{submit_answer[3]}"开头的成语')
                 self.creat_test()
                 self.clear_line_edit()
+                self.ui.checkpoint.setText("关卡1")
+                return
             self.show_test()
             self.clear_line_edit()
+            self.ui.checkpoint.setText("关卡"+f"{int(self.ui.checkpoint.text()[-1])+1}")
         else:
             self.ui.label.setText(f'回答错误，正确答案是：{self.func.answer_word}')
             self.creat_test()
